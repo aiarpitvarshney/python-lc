@@ -28,4 +28,4 @@ jobs:
       - name: Data Ingestion
         run: |
           source .py-venv/bin/activate
-          python -m nbconvert --execute data-ingestion/DataIngestion.ipynb
+          python -m nbconvert --to notebook --execute data-ingestion/DataIngestion.ipynb --output-dir=/tmp
