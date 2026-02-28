@@ -6,8 +6,26 @@ on:
   workflow_dispatch:
 
 jobs:
-  say-hello:
+  data-ingestion:
     runs-on: ubuntu-latest
     steps:
-      - name: Print hello
-        run: echo "hello"
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+
+      - name: Create virtual environment
+        run: python -m venv .py-venv
+
+      - name: Activate venv and install dependencies
+        run: |
+          source .py-venv/bin/activate
+          pip install -r requirement.txt
+
+      - name: Data Ingestion
+        run: |
+          source .py-venv/bin/activate
+          python data-ingestion/DataIngestion.ipynb
